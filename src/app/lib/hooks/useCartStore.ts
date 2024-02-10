@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+import { persist} from 'zustand/middleware'
 import {productDetailsType} from '../../service/types/ProductTypes'
 import { cartType } from '../../service/types/CartType'
 import { handleCalculatePricesAndQuantityDecrease, handleCalculatePricesAndQuantityIncrease } from '../../utils/cartUtil'
@@ -12,7 +13,15 @@ const initialState: cartType={
     totalPrice: 0
 }
 
-export const cartStore = create<cartType>(()=>initialState)
+
+/**
+ * zustand library made easy to change state of hook
+ * Also within zustand feature used called persist to store data locally
+ */
+export const cartStore = create<cartType>()(
+    persist(()=> initialState, {name:'cartStore'})
+)
+
 
 /**
  * Below is custom hook to handle cart items

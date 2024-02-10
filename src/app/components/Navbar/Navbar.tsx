@@ -114,7 +114,7 @@ function Navbar() {
             </nav>
 
             <nav className='flex items-center justify-center flex-wrap gap-6 '>
-            <motion.a href = ''
+            <motion.a href = '/cart'
             whileHover={{y:-3}} className='w-6' whileTap={{scale:0.9}}>
                  <CartIcon className={`${navbar ? "fill-secondary": "fill-primary"} `}/>
                  <Menu/>
