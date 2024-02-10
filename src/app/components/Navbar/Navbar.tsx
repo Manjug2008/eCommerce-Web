@@ -110,7 +110,7 @@ function Navbar() {
             </nav>
 
             <nav>
-                <CustomLink className='mr-4' href='/Home' title='All Products'/>
+                <CustomLink className='mr-4' href='/' title='All Products'/>
             </nav>
 
             <nav className='flex items-center justify-center flex-wrap gap-6 '>
@@ -131,11 +131,11 @@ function Navbar() {
                 animate={{scale:1, opacity:1}}
                 >
                 <nav className='flex flex-col items-center justify-center'>
-                    <CustomMobileLink className='' href='/Home' title='All Products' toggle={handleClick}/>
+                    <CustomMobileLink className='' href='/' title='All Products' toggle={handleClick}/>
                     </nav>
     
                 <nav className='flex items-center justify-center flex-wrap gap-6 mt-2 sm:gap-1'>
-                <motion.a href = ''
+                <motion.a href = '/cart'
                  whileHover={{y:-3}} className='w-6' whileTap={{scale:0.9}}>
                  <CartIcon className=''/>
                  <Menu/>

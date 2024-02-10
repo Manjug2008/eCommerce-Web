@@ -29,7 +29,7 @@ const CartDetails = () => {
             )
             :(
                 <div className='grid grid-cols-4 gap-5'>
-                    <div className='overflow-x-auto col-span-1 md:col-span-3'>
+                    <div className='overflow-x-auto col-span-4'>
                         <table className='table'>
                             <thead className='text-primary'>
                                 <tr>
@@ -57,9 +57,9 @@ const CartDetails = () => {
                                             </td>
 
                                             <td>
-                                              <button className='btn' type='button' onClick={()=>{decrease(itemObj)}}>-</button>
+                                              <button className='h-[18px] w-[15px]  bg-primary text-secondary' type='button' onClick={()=>{decrease(itemObj)}}>-</button>
                                               <span className='px-2'>{itemObj.quantity}</span>
-                                              <button className='btn' type='button' onClick={()=> increase(itemObj)}>+</button>
+                                              <button className='h-[18px] w-[15px] bg-primary text-secondary' type='button' onClick={()=> increase(itemObj)}>+</button>
                                             </td>
 
                                             <td>Rs. {itemObj.productPrice}</td>

@@ -36,7 +36,7 @@ const ProducDetails = ({params,}:{params: ProducDetailsProps}) => {
             />
         </div>
 
-        <div className="col-span-4 md:col-span-1">
+        <div className="col-span-1 md:col-span-4">
             <ul className="space-y-2">
                 <li>
                     <h1 className="text-xl">{product.productTitle}</h1>
