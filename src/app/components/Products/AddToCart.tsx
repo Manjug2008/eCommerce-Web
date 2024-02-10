@@ -14,7 +14,7 @@ interface AddToCartProps {
 const AddToCart = (props: AddToCartProps) => {
     const router = useRouter()
     const {item} = props
-    const {items, increase} = useCartService()
+    const {items, increase, decrease} = useCartService()
     const [existItem, setExistItem] = useState<productDetailsType | undefined>()
     
     useEffect(()=>{
@@ -32,7 +32,7 @@ const AddToCart = (props: AddToCartProps) => {
             existItem ? 
             (
                 <div>
-                    <button className='btn' type='button'>-</button>
+                    <button className='btn' type='button' onClick={()=>{decrease(existItem)}}>-</button>
                     <span className='px-2'>{existItem.quantity}</span>
                     <button className='btn' type='button' onClick={()=> increase(existItem)}>+</button>
                 </div>

@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 import {productDetailsType} from '../../service/types/ProductTypes'
 import { cartType } from '../../service/types/CartType'
-import { handleCalculatePricesAndQuantity } from '../../utils/cartUtil'
+import { handleCalculatePricesAndQuantityDecrease, handleCalculatePricesAndQuantityIncrease } from '../../utils/cartUtil'
 
 
 const initialState: cartType={
@@ -29,7 +29,10 @@ export default function useCartService(){
         shippingPrice,
         totalPrice,
         increase: (item: productDetailsType)=>{
-            cartStore.setState(handleCalculatePricesAndQuantity(items, item))
+            cartStore.setState(handleCalculatePricesAndQuantityIncrease(items, item))
+        },
+        decrease: (item: productDetailsType)=>{
+            cartStore.setState(handleCalculatePricesAndQuantityDecrease(items, item)!)
         }
 
     }

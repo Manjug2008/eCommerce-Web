@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import useCartService from '../../lib/hooks/useCartStore'
-import Link from 'next/link'
 
 const Menu = () => {
     const {items} = useCartService()
