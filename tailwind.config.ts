@@ -13,7 +13,40 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        transparent: 'transparent',
+        dark: "#1b1b1b",
+        gray: "#696969",
+        lightgray: "#D8D5D4",
+        light: "#f5f5f5",
+        primary: "#B63E96",
+        primaryDark: "#58E6D9",
+        navyBlue: "#2B3499"
+      },
+      fontFamily: {
+        ubuntu: ["var(--font-ubuntu)"],
+        fredoka: ["var(--font-fredoka)"],
+      },
     },
+  screens: {
+    '2xl': { max: "1535px" },
+    // => @media (max-width: 1535px) { ... }
+
+    'xl': { max: "1279px" },
+    // => @media (max-width: 1279px) { ... }
+
+    'lg': { max: "1023px" },
+    // => @media (max-width: 1023px) { ... }
+
+    'md': { max: "767px" },
+    // => @media (max-width: 767px) { ... }
+
+    'sm': { max: "639px" },
+    // => @media (max-width: 639px) { ... }
+
+    xs: { max: "479px" },
+    // => @media (max-width: 479px) { ... }
+   },
   },
   plugins: [],
 };
