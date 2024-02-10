@@ -1,4 +1,7 @@
 
+/**
+ * The model to handle product details from API response
+ */
 export type productDetailsType = {
   productBrandCode: string,
   productBrandName: string,
@@ -8,5 +11,6 @@ export type productDetailsType = {
   productTitle: string,
   productDescription: string,
   productImageUrl: string,
-  productPrice: number
+  productPrice: number,
+  quantity?: number
   }

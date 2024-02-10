@@ -1,3 +1,4 @@
+import AddToCart from "@/src/app/components/Products/AddToCart"
 import data from "@/src/app/service/data"
 import Image from "next/image"
 import Link from "next/link"
@@ -52,12 +53,17 @@ const ProducDetails = ({params,}:{params: ProducDetailsProps}) => {
             </ul>
         </div>
 
-        <div className="col-span-1 md:col-span-4 md:mb-4">
+        <div className="col-span-1 md:col-span-4 md:my-4">
             <div className="card bg-base-300 shadow-xl text-secondary">
                 <div className="card-body">
                     <div className="mb-2 flex justify-between">
                         <div>Price</div>
                         <div>Rs. {product.productPrice}</div>
+                    </div>
+
+                    <div className="card-actions justify-center">
+                    <AddToCart item={{...product, quantity: 0}}/>
+
                     </div>
                 </div>
             </div>

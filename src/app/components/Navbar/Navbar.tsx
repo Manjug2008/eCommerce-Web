@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import {motion} from  "framer-motion"
 import { CartIcon } from '../Icons/CartIcon'
+import Menu from './Menu'
 
 
 interface CustomLinkProps {
@@ -116,6 +117,7 @@ function Navbar() {
             <motion.a href = ''
             whileHover={{y:-3}} className='w-6' whileTap={{scale:0.9}}>
                  <CartIcon className={`${navbar ? "fill-secondary": "fill-primary"} `}/>
+                 <Menu/>
                 </motion.a>
             </nav>
             </div>
@@ -136,7 +138,9 @@ function Navbar() {
                 <motion.a href = ''
                  whileHover={{y:-3}} className='w-6' whileTap={{scale:0.9}}>
                  <CartIcon className=''/>
+                 <Menu/>
                 </motion.a>
+                
                 </nav>
                 </motion.div>
                 : null

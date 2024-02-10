@@ -21,7 +21,8 @@ const config: Config = {
         light: "#f5f5f5",
         primary: "#000000",
         secondary: "#FFFFFF",
-        navyBlue: "#2B3499"
+        navyBlue: "#2B3499",
+        btnColor: "#646ce4"
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)"],

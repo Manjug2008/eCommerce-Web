@@ -1,3 +1,7 @@
+/**
+ * Below data is only for testing purpose
+ * Need to delete this data once done with testing
+ */
 
 const data = {
   products: [
