@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en"  className={`${ubuntu.variable} ${fredoka.variable}`}>
-      <body className=" min-h-screen flex flex-col font-ubuntu bg-lightgray">
+      <body className=" min-h-screen flex flex-col font-fredoka bg-lightgray text-primary">
         <Navbar/>
         {children}
         <Footer/>

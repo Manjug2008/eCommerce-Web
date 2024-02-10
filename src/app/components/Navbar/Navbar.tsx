@@ -86,7 +86,7 @@ function Navbar() {
         <header className={`sticky top-0 z-[100] w-full px-16 py-8 font-medium flex items-center justify-between 
         lg:px-16 md:px-12 sm:px-8 md:w-2/3 ${
             navbar
-                ? "h-20 bg-black text-white  md:bg-lightgray transition duration-1000 ease-in-out "
+                ? "h-20 bg-primary text-secondary  md:bg-lightgray transition duration-1000 ease-in-out "
                 : "h-24  bg-transparent transition-all duration-1000 ease-in-out  "
         }
         
@@ -115,7 +115,7 @@ function Navbar() {
             <nav className='flex items-center justify-center flex-wrap gap-6 '>
             <motion.a href = ''
             whileHover={{y:-3}} className='w-6' whileTap={{scale:0.9}}>
-                 <CartIcon className={`${navbar ? "fill-white": "fill-black"} `}/>
+                 <CartIcon className={`${navbar ? "fill-secondary": "fill-primary"} `}/>
                 </motion.a>
             </nav>
             </div>

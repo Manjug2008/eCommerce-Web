@@ -19,8 +19,8 @@ const config: Config = {
         gray: "#696969",
         lightgray: "#D8D5D4",
         light: "#f5f5f5",
-        primary: "#B63E96",
-        primaryDark: "#58E6D9",
+        primary: "#000000",
+        secondary: "#FFFFFF",
         navyBlue: "#2B3499"
       },
       fontFamily: {
@@ -44,10 +44,10 @@ const config: Config = {
     'sm': { max: "639px" },
     // => @media (max-width: 639px) { ... }
 
-    xs: { max: "479px" },
+    'xs': { max: "479px" },
     // => @media (max-width: 479px) { ... }
    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
 export default config;
