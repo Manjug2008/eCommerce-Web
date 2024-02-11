@@ -88,10 +88,7 @@ function Navbar() {
         lg:px-16 md:px-12 sm:px-8 md:w-2/3 ${
             navbar
                 ? "h-20 bg-primary text-secondary  md:bg-lightgray transition duration-1000 ease-in-out "
-                : "h-24  bg-transparent transition-all duration-1000 ease-in-out  "
-        }
-        
-        `
+                : "h-24  bg-transparent transition-all duration-1000 ease-in-out"}`
         }>
 
             <button className='flex-col justify-center items-center hidden lg:flex' onClick={handleClick}>
@@ -106,7 +103,7 @@ function Navbar() {
             <div className='w-full flex justify-between items-center lg:hidden'>
 
             <nav>
-              <Link href='' className='text-[18px] font-bold'> E-Commerce-site</Link>
+              <Link href='/' className='text-[18px] font-bold'> E-Commerce-site</Link>
             </nav>
 
             <nav>

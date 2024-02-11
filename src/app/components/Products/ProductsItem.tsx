@@ -1,6 +1,5 @@
 import React from 'react'
 import { productDetailsType } from '../../service/types/ProductTypes'
-import Image from 'next/image'
 import Link from 'next/link'
 
 interface ProductsItemProps {
@@ -14,7 +13,7 @@ const ProductsItem = (props: ProductsItemProps) => {
     <div className='card bg-base-300 shadow-xl mb-4'>
         <figure>
             <Link href={`/product/${productDetails.productCode}`}>
-                <Image
+                <img
                 src={productDetails.productImageUrl}
                 alt = {productDetails.productTitle}
                 width={300}

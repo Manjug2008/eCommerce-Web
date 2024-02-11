@@ -1,13 +1,13 @@
 'use client'
-import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import useCartService from '../../lib/hooks/useCartStore'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const CartDetails = () => {
-    const router = useRouter
-    const {items, itemsPrice, decrease, increase}= useCartService()
+    const router = useRouter()
+    const {items, itemsPrice, taxPrice, shippingPrice, totalPrice, decrease, increase}= useCartService()
     const [isMounted, setIsMounted] =useState(false)
 
     useEffect(()=>{
@@ -69,9 +69,57 @@ const CartDetails = () => {
                                     })
                                 }
                             </tbody>
-
                         </table>
+                    </div>
+                     
 
+                    <div className='col-span-1 md:col-span-4 md:py-2'>
+                      <div className='card bg-base-300 text-secondary'>
+                        <div className='card-body'>
+                            <ul>
+                                <li>
+                                    <div className='pb-1 text-[14px] flex justify-between items-center'>
+                                        <div>subTotal ({items.reduce((acc, item)=> acc + item.quantity!, 0)}) : </div>
+                                        <div>Rs.{itemsPrice}</div>
+                                    </div>
+                                </li>
+                                <div className='divider bg-gray h-[2px]'/>
+
+                                <li>
+                                    <div className='pb-1 text-[14px] flex justify-between items-center'>
+                                        <div>tax (12%) : </div>
+                                        <div>Rs.{taxPrice}</div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div className='pb-1 text-[14px] flex justify-between items-center'>
+                                        <div>shippingHandle : </div>
+                                        <div>Rs.{shippingPrice}</div>
+                                    </div>
+                                </li>
+
+                                <div className='divider bg-gray h-[2px]'/>
+
+                                <li>
+                                    <div className='pb-1 text-[14px] flex justify-between items-center'>
+                                        <div>total : </div>
+                                        <div>Rs.{totalPrice}</div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <button
+                                    onClick={()=>{router.push('/')}}
+                                    className='btn btn-primary w-full mt-2'>
+                                        Proceed to Checkout
+                                    </button>
+                                </li>
+                            </ul>
+
+                        </div>
+                      </div>
+                        
                     </div>
 
                 </div>
