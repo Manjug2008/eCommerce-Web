@@ -1,5 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
+/**
+ * API middleware handler
+ */
 export const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_APP_SERVER_BASE_URL,
   validateStatus: (status)=>{

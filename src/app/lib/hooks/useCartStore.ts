@@ -15,7 +15,7 @@ const initialState: cartType={
 
 
 /**
- * zustand library made easy to change state of hook
+ * zustand library to change state of hook
  * Also within zustand feature used called persist to store data locally
  */
 export const cartStore = create<cartType>()(
