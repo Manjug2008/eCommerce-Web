@@ -12,7 +12,7 @@ const ProductsItem = (props: ProductsItemProps) => {
     const {productDetails} = props
 
   return (
-    <div className='card bg-secondary mb-4 border border-solid shadow-md'>
+    <div className='card bg-secondary mb-4 border border-solid  border-lightgray shadow-md'>
         <figure className='bg-cardBg'>
             <Link href={`/product/${productDetails.productCode}`}>
                 <motion.img
@@ -20,7 +20,7 @@ const ProductsItem = (props: ProductsItemProps) => {
                 alt = {productDetails.productTitle}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className='object-cover h-auto w-full rounded-2xl px-2 my-4'
+                className='object-cover h-auto w-full rounded-2xl px-2 my-2'
                 />
             </Link>
         </figure>
@@ -36,7 +36,7 @@ const ProductsItem = (props: ProductsItemProps) => {
             
             <p className=''>Description: {productDetails.productDescription}</p>
             <div className='card-actions flex items-center justify-between'>
-                <span className='text-xl underline'>Rs.{productDetails.productPrice}</span>
+                <span className='text-xl underline'>Rs.{productDetails.productPrice}/-</span>
             </div>
 
         </div>

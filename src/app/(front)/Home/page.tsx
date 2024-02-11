@@ -15,7 +15,7 @@ export const ProductHome = () => {
            isFetching &&  <LoadingAnimation />
         }
         
-        <h2 className="text-2xl py-2">Latest Products</h2>
+        {/* <h2 className="text-2xl py-2">Latest Products</h2> */}
         <div className="grid grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-1 text-secondary">
           {
             productData ?
