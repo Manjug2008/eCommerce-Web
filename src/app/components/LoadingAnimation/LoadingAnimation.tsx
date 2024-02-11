@@ -7,7 +7,7 @@ import Lottie from 'lottie-react'
 function LoadingAnimation() {
   
   return (
-       <div className="h-full w-full flex justify-center items-center">
+       <div className="h-screen w-full flex justify-center items-center">
         <Lottie animationData={loader} className="w-[150px] h-[150px]"/>
       </div>
 
