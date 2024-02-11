@@ -1,6 +1,7 @@
+'use client'
+import LoadingAnimation from "@/src/app/components/LoadingAnimation/LoadingAnimation"
 import AddToCart from "@/src/app/components/Products/AddToCart"
-import data from "@/src/app/service/data"
-import Image from "next/image"
+import { getProductDetailsQuery } from "@/src/app/service/queryServices/productQueryServices"
 import Link from "next/link"
 
 interface ProducDetailsProps {
@@ -8,22 +9,24 @@ interface ProducDetailsProps {
   }
 
 const ProducDetails = ({params,}:{params: ProducDetailsProps}) => {
+    const {slug} = params
 
-    const product = data.products.find((productDetails)=> productDetails.productCode === params.slug)
-
-    if(!product){
-        return <div>Product not found</div>
-    }
+    const {isFetching, data: product} = getProductDetailsQuery(slug)
 
   return (
     <>
+    {
+        isFetching &&  <LoadingAnimation />
+    }
     <div className="my-2">
         <Link href='/'> back to products</Link>
     </div>
 
-    <div className="grid grid-cols-4 gap-3">
+    {
+        product ?
+        (<div className="grid grid-cols-4 gap-3">
         <div className="col-span-2 md:col-span-4">
-            <Image
+            <img
             src={product.productImageUrl}
             alt={product.productTitle}
             width={640}
@@ -69,7 +72,11 @@ const ProducDetails = ({params,}:{params: ProducDetailsProps}) => {
             </div>
         </div>
 
-    </div>
+    </div>)
+    : null
+
+    }
+    
     </>
   )
 }

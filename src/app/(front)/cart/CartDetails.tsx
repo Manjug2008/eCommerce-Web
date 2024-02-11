@@ -46,7 +46,7 @@ const CartDetails = () => {
                                         <tr key={itemObj.productCode}>
                                             <td>
                                                 <Link href={`/product/${itemObj.productCode}`} className='flex items-center'>
-                                                    <Image
+                                                    <img
                                                     src={itemObj.productImageUrl}
                                                     alt = {itemObj.productTitle}
                                                     width={50}

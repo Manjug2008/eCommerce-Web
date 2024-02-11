@@ -1,5 +1,5 @@
 import { apiClient } from "../networking/apiClient"
-import { productDetailsType } from "../types/ProductTypes"
+import { productDetailsType, productDetailsWithAboutCommentType } from "../types/ProductTypes"
 
 /**
  * Function responsible to fetch list of products from API server
@@ -14,3 +14,17 @@ export const getProductList = async (): Promise<productDetailsType[]> => {
     })
     return response as unknown as productDetailsType[]
   }
+
+/**
+ * Function responsible to fetch product details from API server associated with productCode
+ * @returns Product details
+ */
+export const getProductDetails = async (productCode: string): Promise<productDetailsWithAboutCommentType> => {
+  const response = await apiClient({
+    method: 'get',
+    url: `products/${productCode}/details`,
+    params: {}
+
+  })
+  return response as unknown as productDetailsWithAboutCommentType
+}

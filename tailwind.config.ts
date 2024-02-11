@@ -22,7 +22,8 @@ const config: Config = {
         primary: "#000000",
         secondary: "#FFFFFF",
         navyBlue: "#2B3499",
-        btnColor: "#646ce4"
+        btnColor: "#646ce4",
+        cardBg: "#F2F1EF"
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)"],
