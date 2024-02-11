@@ -119,7 +119,7 @@ function Navbar() {
                 </nav>
 
                 <nav>
-                    <CustomLink className='mr-4' href='/' title='All Products' />
+                    <CustomLink className='mr-4' href='/' title='Home' />
                 </nav>
 
                 <nav className='flex items-center justify-center flex-wrap gap-6 '>

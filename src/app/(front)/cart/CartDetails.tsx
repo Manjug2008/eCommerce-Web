@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 
 const CartDetails = () => {
     const router = useRouter()
-    const {items, itemsPrice, taxPrice, shippingPrice, totalPrice, decrease, increase}= useCartService()
+    const {items, itemsPrice, taxPrice, shippingPrice, totalPrice, decrease, increase, initializeCart}= useCartService()
     const [isMounted, setIsMounted] =useState(false)
 
     useEffect(()=>{
@@ -110,7 +110,10 @@ const CartDetails = () => {
 
                                 <li>
                                     <button
-                                    onClick={()=>{router.push('/')}}
+                                    onClick={()=>{
+                                        initializeCart()
+                                        router.push('/')
+                                    }}
                                     className='btn btn-primary w-full mt-2'>
                                         Proceed to Checkout
                                     </button>

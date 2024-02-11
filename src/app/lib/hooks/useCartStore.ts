@@ -42,6 +42,9 @@ export default function useCartService(){
         },
         decrease: (item: productDetailsType)=>{
             cartStore.setState(handleCalculatePricesAndQuantityDecrease(items, item)!)
+        },
+        initializeCart:()=>{
+            cartStore.setState(initialState)
         }
 
     }
