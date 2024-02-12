@@ -4,11 +4,14 @@ import { brandFilterType, categoryFilterType } from '../../service/types/Product
 
 interface FilterProductComponentProps {
   brandFilters: brandFilterType[],
-  categoryFilter: categoryFilterType[]
+  categoryFilter: categoryFilterType[],
+  updateCategoryList: (categoryCode: string, checkState: boolean)=> void,
+  updateBrandList: (brandCode: string, checkState: boolean)=> void,
+
 }
 
 const FilterProductComponent = (props: FilterProductComponentProps) => {
-  const { brandFilters, categoryFilter } = props
+  const { brandFilters, categoryFilter, updateCategoryList, updateBrandList } = props
 
   return (
     <div className='flex flex-col gap-2'>
@@ -26,7 +29,7 @@ const FilterProductComponent = (props: FilterProductComponentProps) => {
                       type = 'checkbox' 
                       value={category.categoryCode}
                       checked={category.isSelected}
-                      onChange={()=>{}}
+                      onChange={(e)=>{updateCategoryList(category.categoryCode, e.target.checked)}}
                       className='w-4 h-4 rounded-md cursor-pointer border-navyBlue'/>
                       <p className='text-sm font-medium'> {category.categoryName}</p>
                   </div>
@@ -53,7 +56,7 @@ const FilterProductComponent = (props: FilterProductComponentProps) => {
                       type = 'checkbox' 
                       value={brand.brandCode}
                       checked={brand.isSelected}
-                      onChange={()=>{}}
+                      onChange={(e)=>{updateBrandList(brand.brandCode, e.target.checked)}}
                       className='w-4 h-4 rounded-md cursor-pointer border-navyBlue'/>
                       <p className='text-sm font-medium'> {brand.brandName}</p>
                   </div>

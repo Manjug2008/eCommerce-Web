@@ -86,9 +86,9 @@ function Navbar() {
 
     return (
         <header className={`sticky top-0 z-[100] w-full px-16 py-8 font-medium flex items-center justify-between 
-        lg:px-16 md:px-12 sm:px-8 md:w-2/3 ${navbar
+        lg:px-16 md:px-12 sm:px-8 md:w-1/3 md:h-5 ${navbar
                 ? "h-20 bg-primary text-secondary  md:bg-transparent transition duration-1000 ease-in-out "
-                : "h-24  bg-transparent transition-all duration-1000 ease-in-out"}`
+                : "h-24 bg-transparent transition-all duration-1000 ease-in-out"}`
         }>
 
             <button className='flex-col justify-center items-center hidden lg:flex' onClick={handleClick}>
@@ -96,10 +96,7 @@ function Navbar() {
                 <span className={`bg-gray block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
                 <span className={`bg-gray block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'}`}></span>
             </button>
-
-            <div className='w-auto text-[18px] '>
-
-            </div>
+            
             <div className='w-full flex justify-between items-center lg:hidden'>
 
                 <nav>

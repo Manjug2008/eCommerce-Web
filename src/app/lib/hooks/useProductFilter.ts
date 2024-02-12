@@ -1,7 +1,7 @@
 import {create} from 'zustand'
 import {useProductFilterType} from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
-import { updateInitalProductData } from '../../utils/filterProductUtil'
+import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData } from '../../utils/filterProductUtil'
 
 
 const initialState: useProductFilterType={
@@ -35,6 +35,27 @@ export default function useProductFilter(){
                 productsList: products,
                 filteredProductsList: products
             })
+        },
+        updateCategoryFilters:(categoryCode: string, checkState: boolean)=>{
+
+            const updatedCategoryFilterList = updateCategoryFiltersData(categoryFilter, categoryCode, checkState)
+            productFilters.setState({
+                categoryFilter: updatedCategoryFilterList, 
+                brandFilter,
+                productsList,
+                filteredProductsList
+            })
+        },
+        updateBrandFilters:(brandCode: string, checkState: boolean)=>{
+            const updatedBrandFilterList = updateBrandFiltersData(brandFilter, brandCode, checkState)
+            productFilters.setState({
+                categoryFilter, 
+                brandFilter: updatedBrandFilterList,
+                productsList,
+                filteredProductsList
+            })
+
+            
         }
 
     }

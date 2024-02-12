@@ -7,7 +7,8 @@ import FilterProductComponent from "./FilterProductComponent";
 import useProductFilter from "../../lib/hooks/useProductFilter";
 
 export const ProductHome = () => {
-  const {brandFilter, filteredProductsList, productsList, categoryFilter, addIntialProductData} = useProductFilter()
+  const {brandFilter, filteredProductsList, productsList, 
+    categoryFilter, addIntialProductData, updateBrandFilters, updateCategoryFilters} = useProductFilter()
     
     const {isFetching, data: productData} = getAllProductsQuery()
 
@@ -29,7 +30,9 @@ export const ProductHome = () => {
         
         <div className="grid grid-cols-6 gap-2 md:grid-cols-5">
         <div className="col-span-2 md:col-span-2">
-          <FilterProductComponent categoryFilter={categoryFilter} brandFilters={brandFilter}/>
+          <FilterProductComponent 
+          categoryFilter={categoryFilter} brandFilters={brandFilter}
+          updateCategoryList={updateCategoryFilters} updateBrandList={updateBrandFilters}/>
         </div>
         
           <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-3 md:gap-1 md:grid-cols-1">
