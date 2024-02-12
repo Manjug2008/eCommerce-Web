@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { useProductFilterType } from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
-import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData, getProductBrandListData } from '../../utils/filterProductUtil'
+import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData, 
+    getProductBrandListData, filterProductsBasedOnBrandAndCategory } from '../../utils/filterProductUtil'
 
 
 const initialState: useProductFilterType = {
@@ -57,17 +58,22 @@ export default function useProductFilter() {
             })
         },
         updateFilteredProductList: (productList: productDetailsType[]) => {
-            console.log('manju1')
             const productBrandListResult = getProductBrandListData(productList)
-
-            console.log(productBrandListResult)
-            console.log(productList)
-
             productFilters.setState({
                 categoryFilter,
                 brandFilter: productBrandListResult,
                 productsList,
                 filteredProductsList: productList
+            })
+        },
+        filterProductListFromBrandAndCategory: (brandCode?: string, categoryCode?: string)=>{
+            
+            const productDataResult = filterProductsBasedOnBrandAndCategory(productsList, brandCode, categoryCode)
+            productFilters.setState({
+                categoryFilter,
+                brandFilter,
+                productsList,
+                filteredProductsList: productDataResult
             })
         }
 

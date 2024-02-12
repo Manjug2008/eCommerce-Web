@@ -17,7 +17,6 @@ const ProducDetails = ({ params, }: { params: ProducDetailsProps }) => {
     const { slug } = params
 
     const { isFetching, data: product, refetch } =  getProductDetailsQuery(slug)
-
     useEffect(()=>{ refetch() }, [slug])
 
 

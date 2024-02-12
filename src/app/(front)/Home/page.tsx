@@ -8,9 +8,12 @@ import useProductFilter from "../../lib/hooks/useProductFilter";
 
 export const ProductHome = () => {
   const { brandFilter, filteredProductsList, productsList,
-    categoryFilter, addIntialProductData, updateBrandFilters, updateCategoryFilters, updateFilteredProductList } = useProductFilter()
+    categoryFilter, addIntialProductData, updateBrandFilters, updateCategoryFilters, 
+    updateFilteredProductList, filterProductListFromBrandAndCategory } = useProductFilter()
   const [categoryCode, setCategoryCode] = useState<string>()
+  const [brandCode, setBrandCode] = useState<string>()
   const [reAllotProducts, setReAllotProducts] = useState<boolean>(false)
+  const [reAllotBrands, setReAllotBrands] = useState<boolean>(false)
 
   const { isFetching: productFetching, data: productData, refetch: fetchAllProducts } = getAllProductsQuery()
   const { isFetching: categoryFetching, data: categoryProductData, refetch: fetchFromCategory } = getProductDetailsAssociatedWithCategoryQuery(categoryCode!)
@@ -18,22 +21,45 @@ export const ProductHome = () => {
 
   useEffect(() => { fetchAllProducts() }, [])
   useEffect(() => { categoryCode && fetchFromCategory() }, [categoryCode])
+  useEffect(() => {brandCode && filterProductListFromBrandAndCategory(brandCode, categoryCode)}, [brandCode])
   useEffect(() => { productData && addIntialProductData(productData) }, [productData])
   useEffect(() => { categoryProductData && updateFilteredProductList(categoryProductData) }, [categoryProductData])
   useEffect(() => { 
     if(reAllotProducts){
       setCategoryCode(undefined)
+      setBrandCode(undefined)
       updateFilteredProductList(productsList)
     }
   }, [reAllotProducts])
+  useEffect(() => { 
+    if(reAllotBrands){
+      setBrandCode(undefined)
+      filterProductListFromBrandAndCategory(undefined, categoryCode)
+    }
+  }, [reAllotBrands])
+
+  
 
 
+  /**
+   * Function responsible to handle category filters
+   * Also if checkBox state is false the rollBack productList data to its origin
+   * @param categoryCode 
+   * @param checkState 
+   * @returns null
+   */
   const handleUpdateCategoryFilter = (categoryCode: string, checkState: boolean) => {
     setReAllotProducts(false)
-    !checkState && console.log(productsList)
     checkState ? setCategoryCode(categoryCode) : setReAllotProducts(true)
     updateCategoryFilters(categoryCode, checkState)
   }
+
+  const handleUpdateBrandFilter = (brandCode: string, checkState: boolean)=>{
+    setReAllotBrands(false)
+    checkState ? setBrandCode(brandCode) : setReAllotBrands(true)
+    updateBrandFilters(brandCode, checkState)
+  }
+
 
 
   return (
@@ -54,7 +80,7 @@ export const ProductHome = () => {
                 <div className="col-span-2 md:col-span-2">
                   <FilterProductComponent
                     categoryFilter={categoryFilter} brandFilters={brandFilter}
-                    updateCategoryList={handleUpdateCategoryFilter} updateBrandList={updateBrandFilters} />
+                    updateCategoryList={handleUpdateCategoryFilter} updateBrandList={handleUpdateBrandFilter} />
                 </div>
 
                 <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-3 md:gap-1 md:grid-cols-1">
