@@ -22,7 +22,7 @@ const FilterProductComponent = (props: FilterProductComponentProps) => {
           {
             categoryFilter.map((category, index) => {
               return (
-                <li className={`w-full ${categoryFilter.length === (index+1) ? "border-b" : ""}border-b border-secondary rounded-t-lg`}>
+                <li key={index} className={`w-full ${categoryFilter.length === (index+1) ? "border-b" : ""}border-b border-secondary rounded-t-lg`}>
                   <div key={index}  className="flex items-center space-x-2 ps-3 py-2">
                       <input  
                       id={category.categoryCode}
@@ -49,7 +49,7 @@ const FilterProductComponent = (props: FilterProductComponentProps) => {
           {
             brandFilters.map((brand, index) => {
               return (
-                <li className={`w-full ${brandFilters.length === (index+1) ? "border-b" : ""}border-b border-secondary rounded-t-lg`}>
+                <li key={index} className={`w-full ${brandFilters.length === (index+1) ? "border-b" : ""}border-b border-secondary rounded-t-lg`}>
                   <div key={index}  className="flex items-center space-x-2 ps-3 py-2">
                       <input  
                       id={brand.brandCode}
