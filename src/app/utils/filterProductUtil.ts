@@ -2,6 +2,25 @@ import { brandFilterType, categoryFilterType } from "../service/types/ProductFil
 import { productDetailsType } from "../service/types/ProductTypes"
 
 /**
+ * The function is responsible to fetch product brand details from product list
+ * @param productList 
+ * @returns Product brand list
+ */
+export const getProductBrandListData = (productList: productDetailsType[])=>{
+    const brandFilterData: brandFilterType[] = []
+
+    productList.map((product)=>{
+        const {productBrandCode, productBrandName} = product
+        
+        const isBrandExist = brandFilterData.find(brand => brand.brandCode === productBrandCode)
+        !isBrandExist && brandFilterData.push({brandCode: productBrandCode, brandName: productBrandName, isSelected: false})
+
+        })
+
+        return (brandFilterData)
+}
+
+/**
  * The function to update intial product data
  * @param productList 
  * @returns updated category filters and brand filters
@@ -9,18 +28,16 @@ import { productDetailsType } from "../service/types/ProductTypes"
 export const updateInitalProductData = (productList: productDetailsType[])=>{
     
     const categoryFilterData: categoryFilterType[] = []
-    const brandFilterData: brandFilterType[] = []
+    const brandFilterData: brandFilterType[] = getProductBrandListData(productList)
 
     productList.map((product)=>{
-        const {productBrandCode, productBrandName, productCategoryCode, productCategoryName} = product
+        const {productCategoryCode, productCategoryName} = product
 
         const isCategoryExist = categoryFilterData.find(category => category.categoryCode === productCategoryCode)
         !isCategoryExist && categoryFilterData.push({categoryCode: productCategoryCode, categoryName: productCategoryName,isSelected: false})
 
-        const isBrandExist = brandFilterData.find(brand => brand.brandCode === productBrandCode)
-        !isBrandExist && brandFilterData.push({brandCode: productBrandCode, brandName: productBrandName, isSelected: false})
-
         })
+
 
         return ({categoryFilterData, brandFilterData})
 }

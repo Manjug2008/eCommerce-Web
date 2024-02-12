@@ -1,17 +1,17 @@
-import {create} from 'zustand'
-import {useProductFilterType} from '../../service/types/ProductFilterType'
+import { create } from 'zustand'
+import { useProductFilterType } from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
-import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData } from '../../utils/filterProductUtil'
+import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData, getProductBrandListData } from '../../utils/filterProductUtil'
 
 
-const initialState: useProductFilterType={
+const initialState: useProductFilterType = {
     categoryFilter: [],
     brandFilter: [],
     productsList: [],
     filteredProductsList: [],
 }
 
-export const productFilters = create<useProductFilterType>(()=>initialState)
+export const productFilters = create<useProductFilterType>(() => initialState)
 
 
 /**
@@ -19,51 +19,56 @@ export const productFilters = create<useProductFilterType>(()=>initialState)
  * Functionality to Update category filter, brand filter and product filter
  * @returns Updated product filter details
  */
-export default function useProductFilter(){
-    const {categoryFilter, brandFilter, productsList, filteredProductsList} = productFilters()
+export default function useProductFilter() {
+    const { categoryFilter, brandFilter, productsList, filteredProductsList } = productFilters()
 
-    return{
-        categoryFilter, 
+    return {
+        categoryFilter,
         brandFilter,
         productsList,
         filteredProductsList,
-        addIntialProductData:(products: productDetailsType[])=>{
-            const {categoryFilterData, brandFilterData} = updateInitalProductData(products)
+        addIntialProductData: (products: productDetailsType[]) => {
+            const { categoryFilterData, brandFilterData } = updateInitalProductData(products)
             productFilters.setState({
-                categoryFilter: categoryFilterData, 
+                categoryFilter: categoryFilterData,
                 brandFilter: brandFilterData,
                 productsList: products,
                 filteredProductsList: products
             })
         },
-        updateCategoryFilters:(categoryCode: string, checkState: boolean)=>{
+        updateCategoryFilters: (categoryCode: string, checkState: boolean) => {
 
             const updatedCategoryFilterList = updateCategoryFiltersData(categoryFilter, categoryCode, checkState)
 
             productFilters.setState({
-                categoryFilter: updatedCategoryFilterList, 
+                categoryFilter: updatedCategoryFilterList,
                 brandFilter,
                 productsList,
                 filteredProductsList
             })
         },
-        updateBrandFilters:(brandCode: string, checkState: boolean)=>{
+        updateBrandFilters: (brandCode: string, checkState: boolean) => {
             const updatedBrandFilterList = updateBrandFiltersData(brandFilter, brandCode, checkState)
             productFilters.setState({
-                categoryFilter, 
+                categoryFilter,
                 brandFilter: updatedBrandFilterList,
                 productsList,
                 filteredProductsList
-            })    
+            })
         },
-        updateFilteredProductList:(productList: productDetailsType[])=>{
-            
+        updateFilteredProductList: (productList: productDetailsType[]) => {
+            console.log('manju1')
+            const productBrandListResult = getProductBrandListData(productList)
+
+            console.log(productBrandListResult)
+            console.log(productList)
+
             productFilters.setState({
-                categoryFilter, 
-                brandFilter,
+                categoryFilter,
+                brandFilter: productBrandListResult,
                 productsList,
                 filteredProductsList: productList
-            })    
+            })
         }
 
     }

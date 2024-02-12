@@ -6,6 +6,7 @@ import { calculateProductShippingCharges, calculateProductTax, calculateProductT
 import Link from "next/link"
 import { motion } from "framer-motion";
 import Image from "next/image"
+import { useEffect } from "react"
 
 
 interface ProducDetailsProps {
@@ -15,7 +16,9 @@ interface ProducDetailsProps {
 const ProducDetails = ({ params, }: { params: ProducDetailsProps }) => {
     const { slug } = params
 
-    const { isFetching, data: product } =  getProductDetailsQuery(slug)
+    const { isFetching, data: product, refetch } =  getProductDetailsQuery(slug)
+
+    useEffect(()=>{ refetch() }, [slug])
 
 
     return (
