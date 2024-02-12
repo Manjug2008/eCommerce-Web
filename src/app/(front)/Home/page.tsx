@@ -27,12 +27,12 @@ export const ProductHome = () => {
         </div>
         
         
-        <div className="grid grid-cols-6 gap-2 md:grid-cols-3">
-        <div className="col-span-2 md:col-span-1">
+        <div className="grid grid-cols-6 gap-2 md:grid-cols-5">
+        <div className="col-span-2 md:col-span-2">
           <FilterProductComponent categoryFilter={categoryFilter} brandFilters={brandFilter}/>
         </div>
         
-          <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-2 md:gap-1 md:grid-cols-1">
+          <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-3 md:gap-1 md:grid-cols-1">
           
           {
             filteredProductsList ?
