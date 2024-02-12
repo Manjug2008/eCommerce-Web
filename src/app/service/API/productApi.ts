@@ -28,3 +28,17 @@ export const getProductDetails = async (productCode: string): Promise<productDet
   })
   return response as unknown as productDetailsWithAboutCommentType
 }
+
+/**
+ * Function responsible to fetch product details from API server associated with categoryCode
+ * @returns Product details
+ */
+export const getProductDetailsAssociatedWithCategoryCode = async (categoryCode: string): Promise<productDetailsType[]> => {
+  const response = await apiClient({
+    method: 'get',
+    url: `products/category/${categoryCode}`,
+    params: {}
+
+  })
+  return response as unknown as productDetailsType[]
+}

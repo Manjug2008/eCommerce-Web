@@ -41,7 +41,7 @@ export const updateCategoryFiltersData = (categoryFilter: categoryFilterType[], 
         }
         return {...category, isSelected: false}
     })
-        
+
 }
 
 /**

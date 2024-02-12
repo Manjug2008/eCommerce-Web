@@ -39,6 +39,7 @@ export default function useProductFilter(){
         updateCategoryFilters:(categoryCode: string, checkState: boolean)=>{
 
             const updatedCategoryFilterList = updateCategoryFiltersData(categoryFilter, categoryCode, checkState)
+
             productFilters.setState({
                 categoryFilter: updatedCategoryFilterList, 
                 brandFilter,
@@ -53,9 +54,16 @@ export default function useProductFilter(){
                 brandFilter: updatedBrandFilterList,
                 productsList,
                 filteredProductsList
-            })
-
+            })    
+        },
+        updateFilteredProductList:(productList: productDetailsType[])=>{
             
+            productFilters.setState({
+                categoryFilter, 
+                brandFilter,
+                productsList,
+                filteredProductsList: productList
+            })    
         }
 
     }

@@ -15,7 +15,7 @@ interface ProducDetailsProps {
 const ProducDetails = ({ params, }: { params: ProducDetailsProps }) => {
     const { slug } = params
 
-    const { isFetching, data: product } = getProductDetailsQuery(slug)
+    const { isFetching, data: product } =  getProductDetailsQuery(slug)
 
 
     return (
