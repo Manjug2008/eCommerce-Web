@@ -20,21 +20,21 @@ const ProductsItem = (props: ProductsItemProps) => {
                 alt = {productDetails.productTitle}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className='object-cover h-auto w-full rounded-2xl px-2 my-2'
+                className='object-fill h-48 w-96  rounded-2xl px-2 my-2'
                 />
             </Link>
         </figure>
 
-        <div className='card-body text-primary text-[14px]'>
+        <div className='card-body text-primary text-[14px] py-1 px-2'>
           <div>
           <Link href={`/product/${productDetails.productCode}`}> 
-            <h4 className='card-title font-normal'>Tile: {productDetails.productTitle}</h4>
+            <h6 className='card-title font-normal'>Tile: {productDetails.productTitle}</h6>
             </Link>
-            <p className=''>Brand: {productDetails.productBrandName} ({productDetails.productCategoryName})</p>
+            <p className='text-[12px]'>Brand: {productDetails.productBrandName} ({productDetails.productCategoryName})</p>
 
           </div>
             
-            <p className=''>Description: {productDetails.productDescription}</p>
+            <p className='text-[12px]'>Description: {productDetails.productDescription}</p>
             <div className='card-actions flex items-center justify-between'>
                 <span className='text-xl underline'>Rs.{productDetails.productPrice}/-</span>
             </div>
