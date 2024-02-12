@@ -50,6 +50,6 @@ const config: Config = {
     // => @media (max-width: 479px) { ... }
    },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require('@tailwindcss/forms')],
 };
 export default config;
