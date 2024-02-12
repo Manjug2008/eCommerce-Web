@@ -112,12 +112,8 @@ export const updateProductFilters = (productList: productDetailsType[], priceLis
     if (!brandCode && !categoryCode && priceUnique == 0) {
         return productList
     }
-
-    console.log('manju11')
-    console.log(priceUnique)
     
     const priceData = priceList.find((priceObj) => priceObj.priceUnique === priceUnique)
-    console.log(priceData)
 
     productList.map((product) => {
         categoryCode && brandCode
