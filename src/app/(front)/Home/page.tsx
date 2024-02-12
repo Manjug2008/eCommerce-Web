@@ -7,9 +7,9 @@ import FilterProductComponent from "./FilterProductComponent";
 import useProductFilter from "../../lib/hooks/useProductFilter";
 
 export const ProductHome = () => {
-  const { brandFilter, filteredProductsList, productsList,
-    categoryFilter, addIntialProductData, updateBrandFilters, updateCategoryFilters, 
-    updateFilteredProductList, filterProductListFromBrandAndCategory } = useProductFilter()
+  const { brandFilter, filteredProductsList, productsList, categoryFilter, priceFilter,
+    addIntialProductData, updateBrandFilters, updateCategoryFilters, 
+    updateFilteredProductList, filterProductListFromBrandAndCategory, updatePriceFilters } = useProductFilter()
   const [categoryCode, setCategoryCode] = useState<string>()
   const [brandCode, setBrandCode] = useState<string>()
   const [reAllotProducts, setReAllotProducts] = useState<boolean>(false)
@@ -54,13 +54,27 @@ export const ProductHome = () => {
     updateCategoryFilters(categoryCode, checkState)
   }
 
+  /**
+   * Function responsible to handle brand filters
+   * @param brandCode 
+   * @param checkState 
+   * @returns null
+   */
   const handleUpdateBrandFilter = (brandCode: string, checkState: boolean)=>{
     setReAllotBrands(false)
     checkState ? setBrandCode(brandCode) : setReAllotBrands(true)
     updateBrandFilters(brandCode, checkState)
   }
 
-
+  /**
+   * Function responsible to handle price filters
+   * @param priceUnique 
+   * @param checkState 
+   * @returns null
+   */
+  const handlePriceFilter = (priceUnique: number, checkState: boolean)=>{
+    updatePriceFilters(priceUnique, checkState)
+  }
 
   return (
     <div>
@@ -80,7 +94,8 @@ export const ProductHome = () => {
                 <div className="col-span-2 md:col-span-2">
                   <FilterProductComponent
                     categoryFilter={categoryFilter} brandFilters={brandFilter}
-                    updateCategoryList={handleUpdateCategoryFilter} updateBrandList={handleUpdateBrandFilter} />
+                    updateCategoryList={handleUpdateCategoryFilter} updateBrandList={handleUpdateBrandFilter} 
+                    priceFilter={priceFilter} updatePriceList={handlePriceFilter}/>
                 </div>
 
                 <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-3 md:gap-1 md:grid-cols-1">

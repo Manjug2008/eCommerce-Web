@@ -1,4 +1,4 @@
-import { brandFilterType, categoryFilterType } from "../service/types/ProductFilterType"
+import { brandFilterType, categoryFilterType, priceFilterType } from "../service/types/ProductFilterType"
 import { productDetailsType } from "../service/types/ProductTypes"
 
 /**
@@ -105,5 +105,23 @@ export const filterProductsBasedOnBrandAndCategory = (productList: productDetail
                     : productListResult.push(product)
     })
     return productListResult
+
+}
+
+/**
+ * The function responsible to update select state of price
+ * @param priceFilterData 
+ * @param priceUnique 
+ * @param checkState 
+ * @returns List of price data
+ */
+export const updatePriceFiltersData = (priceFilterData: priceFilterType[], priceUnique: number, checkState: boolean) => {
+
+    return priceFilterData.map((priceObj) => {
+        if (priceObj.priceUnique === priceUnique) {
+            return { ...priceObj, isSelected: checkState }
+        }
+        return { ...priceObj, isSelected: false }
+    })
 
 }

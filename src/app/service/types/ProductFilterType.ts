@@ -19,6 +19,17 @@ export type brandFilterType = {
     }
 
 /**
+ * The model to handle price filters
+ */
+   export type priceFilterType = {
+       priceUnique: number,
+       priceStart: number,
+       priceEnd: number,
+       priceTitle: string,
+       isSelected: boolean
+       }
+
+/**
  * The model to useProduct filter
  */
 export type useProductFilterType = {
@@ -26,5 +37,6 @@ export type useProductFilterType = {
     brandFilter: brandFilterType[],
     productsList: productDetailsType[],
     filteredProductsList: productDetailsType[],
+    priceFilter: priceFilterType[]
     }
 

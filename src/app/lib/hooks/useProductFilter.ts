@@ -2,7 +2,8 @@ import { create } from 'zustand'
 import { useProductFilterType } from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
 import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData, 
-    getProductBrandListData, filterProductsBasedOnBrandAndCategory } from '../../utils/filterProductUtil'
+    getProductBrandListData, filterProductsBasedOnBrandAndCategory, updatePriceFiltersData } from '../../utils/filterProductUtil'
+import { priceFilterData } from '../../utils/priceFilterData'
 
 
 const initialState: useProductFilterType = {
@@ -10,6 +11,7 @@ const initialState: useProductFilterType = {
     brandFilter: [],
     productsList: [],
     filteredProductsList: [],
+    priceFilter: priceFilterData
 }
 
 export const productFilters = create<useProductFilterType>(() => initialState)
@@ -21,20 +23,22 @@ export const productFilters = create<useProductFilterType>(() => initialState)
  * @returns Updated product filter details
  */
 export default function useProductFilter() {
-    const { categoryFilter, brandFilter, productsList, filteredProductsList } = productFilters()
+    const { categoryFilter, brandFilter, productsList, filteredProductsList, priceFilter } = productFilters()
 
     return {
         categoryFilter,
         brandFilter,
         productsList,
         filteredProductsList,
+        priceFilter,
         addIntialProductData: (products: productDetailsType[]) => {
             const { categoryFilterData, brandFilterData } = updateInitalProductData(products)
             productFilters.setState({
                 categoryFilter: categoryFilterData,
                 brandFilter: brandFilterData,
                 productsList: products,
-                filteredProductsList: products
+                filteredProductsList: products,
+                priceFilter
             })
         },
         updateCategoryFilters: (categoryCode: string, checkState: boolean) => {
@@ -45,7 +49,8 @@ export default function useProductFilter() {
                 categoryFilter: updatedCategoryFilterList,
                 brandFilter,
                 productsList,
-                filteredProductsList
+                filteredProductsList,
+                priceFilter
             })
         },
         updateBrandFilters: (brandCode: string, checkState: boolean) => {
@@ -54,7 +59,8 @@ export default function useProductFilter() {
                 categoryFilter,
                 brandFilter: updatedBrandFilterList,
                 productsList,
-                filteredProductsList
+                filteredProductsList,
+                priceFilter
             })
         },
         updateFilteredProductList: (productList: productDetailsType[]) => {
@@ -63,7 +69,8 @@ export default function useProductFilter() {
                 categoryFilter,
                 brandFilter: productBrandListResult,
                 productsList,
-                filteredProductsList: productList
+                filteredProductsList: productList,
+                priceFilter
             })
         },
         filterProductListFromBrandAndCategory: (brandCode?: string, categoryCode?: string)=>{
@@ -73,7 +80,20 @@ export default function useProductFilter() {
                 categoryFilter,
                 brandFilter,
                 productsList,
-                filteredProductsList: productDataResult
+                filteredProductsList: productDataResult,
+                priceFilter
+            })
+        },
+        updatePriceFilters: (priceUnique: number, checkState: boolean) => {
+
+            const priceSelectDataResult = updatePriceFiltersData(priceFilter, priceUnique, checkState)
+
+            productFilters.setState({
+                categoryFilter,
+                brandFilter,
+                productsList,
+                filteredProductsList,
+                priceFilter: priceSelectDataResult
             })
         }
 

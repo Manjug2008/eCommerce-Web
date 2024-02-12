@@ -1,20 +1,21 @@
 'use client'
 import React from 'react'
-import { brandFilterType, categoryFilterType } from '../../service/types/ProductFilterType'
+import { brandFilterType, categoryFilterType, priceFilterType } from '../../service/types/ProductFilterType'
 
 interface FilterProductComponentProps {
   brandFilters: brandFilterType[],
   categoryFilter: categoryFilterType[],
+  priceFilter: priceFilterType[],
   updateCategoryList: (categoryCode: string, checkState: boolean)=> void,
   updateBrandList: (brandCode: string, checkState: boolean)=> void,
-
+  updatePriceList: (priceUnique: number, checkState: boolean)=> void,
 }
 
 const FilterProductComponent = (props: FilterProductComponentProps) => {
-  const { brandFilters, categoryFilter, updateCategoryList, updateBrandList } = props
+  const { brandFilters, categoryFilter, priceFilter, updateCategoryList, updateBrandList, updatePriceList } = props
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap-2 ml-8 md:ml-0'>
 
       <div>
         <h3 className="mb-2 font-semibold text-gray-900 ">Categories</h3>
@@ -62,6 +63,23 @@ const FilterProductComponent = (props: FilterProductComponentProps) => {
                   </div>
                 </li>
 
+              )
+            })
+          }
+        </ul>
+      </div>
+
+      <div className='divider bg-secondary h-[2px]'/>
+
+      <div>
+        <h3 className="mb-2 font-semibold text-gray-900 ">Price</h3>
+        <ul className="w-48 md:w-32 text-sm ">
+          {
+            priceFilter.map((priceObj, index) => {
+              return (
+                <li key={index} className='mb-3'>
+                  <p className={`cursor-pointer ${priceObj.isSelected ? "text-[16px] font-extrabold underline" : ""}`} onClick={()=>{updatePriceList(priceObj.priceUnique, !priceObj.isSelected)}}>{priceObj.priceTitle}</p>
+                </li>
               )
             })
           }
