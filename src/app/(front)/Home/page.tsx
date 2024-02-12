@@ -15,7 +15,10 @@ export const ProductHome = () => {
            isFetching &&  <LoadingAnimation />
         }
         
-        {/* <h2 className="text-2xl py-2">Latest Products</h2> */}
+        <div className="py-2 border-b border-slate-200 space-y-4 my-2">
+          <h2 className="text-2xl font-semibold">Collections</h2>
+        </div>
+        
         <div className="grid grid-cols-4 gap-4 md:grid-cols-3 sm:grid-cols-1 text-secondary">
           {
             productData ?
