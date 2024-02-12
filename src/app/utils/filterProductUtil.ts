@@ -14,7 +14,6 @@ export const getProductBrandListData = (productList: productDetailsType[]) => {
 
         const isBrandExist = brandFilterData.find(brand => brand.brandCode === productBrandCode)
         !isBrandExist && brandFilterData.push({ brandCode: productBrandCode, brandName: productBrandName, isSelected: false })
-
     })
 
     return (brandFilterData)
@@ -80,42 +79,13 @@ export const updateBrandFiltersData = (brandFilter: brandFilterType[], brandCode
 }
 
 /**
- * The function responsible to filter products data based on branch code and category code
- * @param brandCode 
- * @param productList 
- * @param categoryCode 
- * @returns Filtered list of product details
- */
-export const filterProductsBasedOnBrandAndCategory = (productList: productDetailsType[], brandCode?: string, categoryCode?: string) => {
-
-    const productListResult: productDetailsType[] = []
-
-    if (!brandCode && !categoryCode) {
-        return productList
-    }
-
-
-    productList.map((product) => {
-        categoryCode && brandCode
-            ? (product.productCategoryCode === categoryCode && product.productBrandCode === brandCode) && productListResult.push(product)
-            : categoryCode && !brandCode
-                ? product.productCategoryCode === categoryCode && productListResult.push(product)
-                : !categoryCode && brandCode
-                    ? product.productBrandCode === brandCode && productListResult.push(product)
-                    : productListResult.push(product)
-    })
-    return productListResult
-
-}
-
-/**
  * The function responsible to update select state of price
  * @param priceFilterData 
  * @param priceUnique 
  * @param checkState 
  * @returns List of price data
  */
-export const updatePriceFiltersData = (priceFilterData: priceFilterType[], priceUnique: number, checkState: boolean) => {
+export const updatePriceFiltersStateData = (priceFilterData: priceFilterType[], priceUnique: number, checkState: boolean) => {
 
     return priceFilterData.map((priceObj) => {
         if (priceObj.priceUnique === priceUnique) {
@@ -124,4 +94,67 @@ export const updatePriceFiltersData = (priceFilterData: priceFilterType[], price
         return { ...priceObj, isSelected: false }
     })
 
+}
+
+/**
+ * The Function to filter Data based on price, brand and category
+ * @param productList 
+ * @param priceList 
+ * @param priceUnique 
+ * @param brandCode 
+ * @param categoryCode 
+ * @returns 
+ */
+export const updateProductFilters = (productList: productDetailsType[], priceList:priceFilterType[],  priceUnique: number, brandCode?: string, categoryCode?: string) => {
+
+    let productListResult: productDetailsType[] = []
+
+    if (!brandCode && !categoryCode && priceUnique == 0) {
+        return productList
+    }
+
+    console.log('manju11')
+    console.log(priceUnique)
+    
+    const priceData = priceList.find((priceObj) => priceObj.priceUnique === priceUnique)
+    console.log(priceData)
+
+    productList.map((product) => {
+        categoryCode && brandCode
+            ? (product.productCategoryCode === categoryCode && product.productBrandCode === brandCode ) && productListResult.push(product)
+            : categoryCode && !brandCode
+                ? product.productCategoryCode === categoryCode && productListResult.push(product)
+                : !categoryCode && brandCode
+                    ? product.productBrandCode === brandCode && productListResult.push(product)
+                    : productListResult.push(product)
+    })
+
+    if(priceData){
+        const isLastPriceElement = priceData.priceEnd === 0 ? true : false
+        productListResult = filterDataBasedOnprice(priceData, productListResult, isLastPriceElement)
+
+    }
+    
+    return productListResult
+}
+
+/**
+ * The function responsible to filter product data between price range
+ * @param priceData 
+ * @param productList 
+ * @param isLastPriceElement 
+ * @returns product Details data list
+ */
+export const filterDataBasedOnprice = (priceData: priceFilterType, productList: productDetailsType[], isLastPriceElement: boolean) => {
+
+    const productResult: productDetailsType[] = []
+
+    productList.map((product) => {
+        isLastPriceElement
+         ? (product.productPrice >= priceData.priceStart) && productResult.push(product)
+         : (product.productPrice >= priceData.priceStart && product.productPrice <= priceData.priceEnd) && productResult.push(product)
+        
+    })
+
+    return productResult
 }

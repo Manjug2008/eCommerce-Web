@@ -1,8 +1,10 @@
 import { create } from 'zustand'
 import { useProductFilterType } from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
-import { updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData, 
-    getProductBrandListData, filterProductsBasedOnBrandAndCategory, updatePriceFiltersData } from '../../utils/filterProductUtil'
+import {
+    updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData,
+    getProductBrandListData, updatePriceFiltersStateData, updateProductFilters
+} from '../../utils/filterProductUtil'
 import { priceFilterData } from '../../utils/priceFilterData'
 
 
@@ -73,27 +75,24 @@ export default function useProductFilter() {
                 priceFilter
             })
         },
-        filterProductListFromBrandAndCategory: (brandCode?: string, categoryCode?: string)=>{
-            
-            const productDataResult = filterProductsBasedOnBrandAndCategory(productsList, brandCode, categoryCode)
-            productFilters.setState({
-                categoryFilter,
-                brandFilter,
-                productsList,
-                filteredProductsList: productDataResult,
-                priceFilter
-            })
-        },
         updatePriceFilters: (priceUnique: number, checkState: boolean) => {
-
-            const priceSelectDataResult = updatePriceFiltersData(priceFilter, priceUnique, checkState)
-
+            const priceSelectDataResult = updatePriceFiltersStateData(priceFilter, priceUnique, checkState)
             productFilters.setState({
                 categoryFilter,
                 brandFilter,
                 productsList,
                 filteredProductsList,
                 priceFilter: priceSelectDataResult
+            })
+        },
+        filterProductData: (priceUnique: number, brandCode?: string, categoryCode?: string) => {
+            const productSelectDataResult = updateProductFilters(productsList, priceFilter, priceUnique, brandCode, categoryCode)
+            productFilters.setState({
+                categoryFilter,
+                brandFilter,
+                productsList,
+                filteredProductsList: productSelectDataResult,
+                priceFilter
             })
         }
 

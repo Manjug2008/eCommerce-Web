@@ -9,11 +9,13 @@ import useProductFilter from "../../lib/hooks/useProductFilter";
 export const ProductHome = () => {
   const { brandFilter, filteredProductsList, productsList, categoryFilter, priceFilter,
     addIntialProductData, updateBrandFilters, updateCategoryFilters, 
-    updateFilteredProductList, filterProductListFromBrandAndCategory, updatePriceFilters } = useProductFilter()
+    updateFilteredProductList, updatePriceFilters, filterProductData } = useProductFilter()
   const [categoryCode, setCategoryCode] = useState<string>()
   const [brandCode, setBrandCode] = useState<string>()
+  const [priceUnique, setPriceUnique] = useState<number>(0)
   const [reAllotProducts, setReAllotProducts] = useState<boolean>(false)
   const [reAllotBrands, setReAllotBrands] = useState<boolean>(false)
+  const [reAllotPrice, setReAllotPrice] = useState<boolean>(false)
 
   const { isFetching: productFetching, data: productData, refetch: fetchAllProducts } = getAllProductsQuery()
   const { isFetching: categoryFetching, data: categoryProductData, refetch: fetchFromCategory } = getProductDetailsAssociatedWithCategoryQuery(categoryCode!)
@@ -21,22 +23,33 @@ export const ProductHome = () => {
 
   useEffect(() => { fetchAllProducts() }, [])
   useEffect(() => { categoryCode && fetchFromCategory() }, [categoryCode])
-  useEffect(() => {brandCode && filterProductListFromBrandAndCategory(brandCode, categoryCode)}, [brandCode])
   useEffect(() => { productData && addIntialProductData(productData) }, [productData])
   useEffect(() => { categoryProductData && updateFilteredProductList(categoryProductData) }, [categoryProductData])
+
+  useEffect(() => {
+    (brandCode || priceUnique>0) && filterProductData(priceUnique, brandCode, categoryCode)
+  }, [brandCode, priceUnique])
+
   useEffect(() => { 
     if(reAllotProducts){
       setCategoryCode(undefined)
       setBrandCode(undefined)
-      updateFilteredProductList(productsList)
+      setPriceUnique(0)
+      filterProductData(0, undefined, undefined)
     }
-  }, [reAllotProducts])
-  useEffect(() => { 
+    
     if(reAllotBrands){
+      setReAllotBrands(false)
       setBrandCode(undefined)
-      filterProductListFromBrandAndCategory(undefined, categoryCode)
+      filterProductData(priceUnique, undefined, categoryCode)
     }
-  }, [reAllotBrands])
+
+    if(reAllotPrice){
+      setReAllotPrice(false)
+      setPriceUnique(0)
+      filterProductData(priceUnique, undefined, categoryCode)
+    }
+  }, [reAllotProducts, reAllotBrands, reAllotPrice])
 
   
 
@@ -61,7 +74,6 @@ export const ProductHome = () => {
    * @returns null
    */
   const handleUpdateBrandFilter = (brandCode: string, checkState: boolean)=>{
-    setReAllotBrands(false)
     checkState ? setBrandCode(brandCode) : setReAllotBrands(true)
     updateBrandFilters(brandCode, checkState)
   }
@@ -73,6 +85,7 @@ export const ProductHome = () => {
    * @returns null
    */
   const handlePriceFilter = (priceUnique: number, checkState: boolean)=>{
+    checkState ? setPriceUnique(priceUnique) : setReAllotPrice(true)
     updatePriceFilters(priceUnique, checkState)
   }
 
@@ -99,9 +112,7 @@ export const ProductHome = () => {
                 </div>
 
                 <div className="grid grid-cols-subgrid gap-4 col-span-4 md:col-span-3 md:gap-1 md:grid-cols-1">
-
                   {
-
                     filteredProductsList.map((product) => {
                       return (
                         <ProductsItem key={product.productCode} productDetails={product} />
