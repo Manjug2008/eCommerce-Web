@@ -82,7 +82,7 @@ export default function useProductFilter() {
                 brandFilter,
                 productsList,
                 filteredProductsList,
-                priceFilter: priceSelectDataResult
+                priceFilter: priceSelectDataResult  
             })
         },
         filterProductData: (priceUnique: number, brandCode?: string, categoryCode?: string) => {

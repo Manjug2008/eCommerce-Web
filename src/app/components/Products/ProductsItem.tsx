@@ -12,7 +12,7 @@ const ProductsItem = (props: ProductsItemProps) => {
     const {productDetails} = props
 
   return (
-    <div className='card bg-secondary mb-4 border border-solid  border-lightgray shadow-md'>
+    <div className='card bg-secondary mb-4 border border-solid  border-lightgray shadow-md h-[400px] md:h-auto'>
         <figure className='bg-cardBg'>
             <Link href={`/product/${productDetails.productCode}`}>
                 <motion.img
