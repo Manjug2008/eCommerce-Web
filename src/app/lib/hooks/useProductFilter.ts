@@ -3,7 +3,7 @@ import { useProductFilterType } from '../../service/types/ProductFilterType'
 import { productDetailsType } from '../../service/types/ProductTypes'
 import {
     updateBrandFiltersData, updateCategoryFiltersData, updateInitalProductData,
-    getProductBrandListData, updatePriceFiltersStateData, updateProductFilters
+    getProductBrandListData, updatePriceFiltersStateData, updateProductFilters, filterDataBasedOnprice
 } from '../../utils/filterProductUtil'
 import { priceFilterData } from '../../utils/priceFilterData'
 
@@ -65,13 +65,22 @@ export default function useProductFilter() {
                 priceFilter
             })
         },
-        updateFilteredProductList: (productList: productDetailsType[]) => {
+        updateFilteredProductList: (productList: productDetailsType[], priceUnique: number) => {
             const productBrandListResult = getProductBrandListData(productList)
+
+            let productListResult: productDetailsType[] = productList
+            const priceData = priceFilter.find((priceObj) => priceObj.priceUnique === priceUnique)
+            if(priceData){
+                const isLastPriceElement = priceData.priceEnd === 0 ? true : false
+                productListResult = filterDataBasedOnprice(priceData, productList, isLastPriceElement)
+        
+            }
+
             productFilters.setState({
                 categoryFilter,
                 brandFilter: productBrandListResult,
                 productsList,
-                filteredProductsList: productList,
+                filteredProductsList: productListResult,
                 priceFilter
             })
         },

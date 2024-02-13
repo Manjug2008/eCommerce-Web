@@ -25,7 +25,7 @@ export const ProductHome = () => {
   useEffect(() => { fetchAllProducts() }, [])
   useEffect(() => { categoryCode && fetchFromCategory() }, [categoryCode])
   useEffect(() => { productData && addIntialProductData(productData) }, [productData])
-  useEffect(() => { categoryProductData && updateFilteredProductList(categoryProductData) }, [categoryProductData])
+  useEffect(() => { categoryProductData && updateFilteredProductList(categoryProductData, priceUnique) }, [categoryProductData])
 
   useEffect(() => {
     (brandCode || priceUnique>0) && filterProductData(priceUnique, brandCode, categoryCode)
