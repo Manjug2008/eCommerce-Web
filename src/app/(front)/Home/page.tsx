@@ -5,6 +5,7 @@ import { getAllProductsQuery, getProductDetailsAssociatedWithCategoryQuery } fro
 import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
 import FilterProductComponent from "./FilterProductComponent";
 import useProductFilter from "../../lib/hooks/useProductFilter";
+import SliderComponent from "../../components/Slider/SliderComponent";
 
 export const ProductHome = () => {
   const { brandFilter, filteredProductsList, productsList, categoryFilter, priceFilter,
@@ -98,10 +99,8 @@ export const ProductHome = () => {
         filteredProductsList ?
           (
             <div>
-              <div className="py-2 border-b border-slate-200 space-y-4 my-2">
-                <h2 className="text-2xl font-semibold">Collections</h2>
-              </div>
-
+              <SliderComponent/>
+              <div className="border-b border-slate-200  mb-2"/>
 
               <div className="grid grid-cols-6 gap-2 md:grid-cols-5">
                 <div className="col-span-2 md:col-span-2">

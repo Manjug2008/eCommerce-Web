@@ -23,7 +23,8 @@ const config: Config = {
         secondary: "#FFFFFF",
         navyBlue: "#2B3499",
         btnColor: "#646ce4",
-        cardBg: "#F2F1EF"
+        cardBg: "#F2F1EF",
+        navBg: "#eedcc4"
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)"],

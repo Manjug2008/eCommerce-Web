@@ -17,7 +17,6 @@ const Menu = () => {
             <li>
                 
                 <div className='flex flex-row justify-center items-center gap-2'>
-                    Cart
                     {
                         isMounted && items.length != 0 && (
                             <div className='badge badge-primary'>
