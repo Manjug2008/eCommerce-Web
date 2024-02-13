@@ -84,7 +84,7 @@ function Navbar() {
                         whileHover={{ y: -3 }} className='w-6' whileTap={{ scale: 0.9 }}>
                         <strong className="relative inline-flex items-center px-2.5 py-1.5 text-xs font-medium">
                             <span className="absolute -top-1 -right-2 h-5 w-5 rounded-full flex justify-center items-center items"><span><Menu /></span></span>
-                            <span className=""> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-8 w-8`} /> </span>
+                            <span className=""> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-12 w-12`} /> </span>
                         </strong>
 
                     </motion.a>
