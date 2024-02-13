@@ -99,6 +99,7 @@ export const ProductHome = () => {
           : categoryFetching
             ? <LoadingAnimation />
             : null
+
       }
       {
         filteredProductsList ?

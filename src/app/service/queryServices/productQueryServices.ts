@@ -1,8 +1,6 @@
 /** React query services */
 import { useQuery } from "@tanstack/react-query"
 import { getProductDetails, getProductDetailsAssociatedWithCategoryCode, getProductList } from "../API/productApi"
-import { productDetailsWithAboutCommentType } from "../types/ProductTypes"
-import { faL } from "@fortawesome/free-solid-svg-icons"
 
 /**
  * Function to handle query to fetch all products from API
