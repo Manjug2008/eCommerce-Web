@@ -28,7 +28,7 @@ const ProductsItem = (props: ProductsItemProps) => {
         <div className='card-body text-primary text-[14px] py-1 px-2'>
           <div>
           <Link href={`/product/${productDetails.productCode}`}> 
-            <h6 className='card-title font-normal'>Tile: {productDetails.productTitle}</h6>
+            <h6 className='card-title font-normal'>Title: {productDetails.productTitle}</h6>
             </Link>
             <p className='text-[12px]'>Brand: {productDetails.productBrandName} ({productDetails.productCategoryName})</p>
 
