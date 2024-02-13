@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import useCartService from '../../lib/hooks/useCartStore'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 const CartDetails = () => {
