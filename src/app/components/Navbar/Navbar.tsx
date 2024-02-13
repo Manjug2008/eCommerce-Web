@@ -81,10 +81,10 @@ function Navbar() {
 
                 <nav className='flex items-center justify-center flex-wrap gap-6 '>
                     <motion.a href='/cart'
-                        whileHover={{ y: -3 }} className='w-6' whileTap={{ scale: 0.9 }}>
-                        <strong className="relative inline-flex items-center px-2.5 py-1.5 text-xs font-medium">
+                        whileHover={{ y: -3 }} className='w-8' whileTap={{ scale: 0.9 }}>
+                        <strong className="relative inline-flex items-center ">
                             <span className="absolute -top-1 -right-2 h-5 w-5 rounded-full flex justify-center items-center items"><span><Menu /></span></span>
-                            <span className=""> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-12 w-12`} /> </span>
+                            <span className=""> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-8 w-8`} /> </span>
                         </strong>
 
                     </motion.a>
@@ -115,10 +115,10 @@ function Navbar() {
                         </nav>
 
                         <nav className='flex items-center justify-center flex-wrap gap-6 mt-2 sm:gap-1'>
-                            <a href='/cart'>
-                                <strong className="relative inline-flex items-center px-2.5 py-1.5 text-xs font-medium">
+                            <a href='/cart' className='w-10'>
+                                <strong className="relative inline-flex items-center">
                                     <span className="absolute -top-1 -right-2 h-5 w-5 rounded-full flex justify-center items-center items"><span><Menu /></span></span>
-                                    <span> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-8 w-8`} /> </span>
+                                    <span> <CartIcon className={`${navbar ? "fill-secondary" : "fill-primary"} h-10 w-10`} /> </span>
                                 </strong>
 
                             </a>
