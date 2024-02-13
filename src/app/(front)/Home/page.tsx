@@ -36,7 +36,7 @@ export const ProductHome = () => {
       setCategoryCode(undefined)
       setBrandCode(undefined)
       setPriceUnique(0)
-      filterProductData(0, undefined, undefined)
+      filterProductData(priceUnique, undefined, undefined)
     }
     
     if(reAllotBrands){
@@ -46,9 +46,10 @@ export const ProductHome = () => {
     }
 
     if(reAllotPrice){
+      console.log('manju')
       setReAllotPrice(false)
       setPriceUnique(0)
-      filterProductData(priceUnique, undefined, categoryCode)
+      filterProductData(0, brandCode, categoryCode)
     }
   }, [reAllotProducts, reAllotBrands, reAllotPrice])
 
